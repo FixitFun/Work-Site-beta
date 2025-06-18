@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixitFun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
+</head>
+    <body class="light-theme">
+    <body class="light-theme">
+    <!-- Верхняя панель Windows 12 -->
+    <div class="win12-bar">
+        <div class="win12-start">
+            <!-- Иконка операционной системы с выпадающим меню -->
+            <div class="win12-logo" id="os-logo">
+                <i class="fab fa-windows"></i>
+                <!-- Выпадающее меню -->
+                <div class="os-menu hidden">
+                    <div class="menu-item" data-target="about-section">
+                        <i class="fas fa-user"></i> Обо мне
+                    </div>
+                    <div class="menu-item" data-target="projects-section">
+                        <i class="fas fa-folder"></i> Проекты
+                    </div>
+                    <div class="menu-item" data-target="blog-section">
+                        <i class="fas fa-blog"></i> Блог
+                    </div>
+                    <div class="menu-item" data-target="settings-section">
+                        <i class="fas fa-cog"></i> Настройки
+                    </div>
+                    <div class="menu-divider"></div>
+                    <div class="menu-item" id="shutdown">
+                        <i class="fas fa-power-off"></i> Завершение работы
+                    </div>
+                </div>
+            </div>
+            <div class="win12-title">FixitFun</div>
+        </div>
+        
+        <!-- Центральная панель с виджетами -->
+        <div class="win12-center">
+            <div class="search-widget">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Поиск по сайту...">
+            </div>
+            <div class="weather-widget">
+                <i class="fas fa-sun"></i>
+                <span>+23°C</span>
+            </div>
+        </div>
+        
+        <div class="win12-system-icons">
+            <div class="win12-icon" id="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="win12-icon" id="settings-icon">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="win12-icon notification" id="bell-icon">
+                <i class="fas fa-bell"></i>
+                <div class="notification-badge"></div>
+            </div>
+            <div class="win12-time" id="current-time">
+                <span id="time">14:25</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно поиска -->
+    <div class="win12-modal" id="search-modal">
+        <div class="modal-content">
+            <button class="modal-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="modal-header">
+                <h2 class="modal-title">Поиск</h2>
+                <div class="modal-subtitle">Найдите приложения, файлы и настройки</div>
+            </div>
+            <div class="modal-body">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Введите запрос...">
+                    <button class="search-btn">Поиск</button>
+                </div>
+                <div class="search-results">
+                    <div class="search-result">
+                        <h4><i class="fas fa-file-alt"></i> Документ: Отчет за май</h4>
+                        <p>Документы > Финансы > Отчеты</p>
+                    </div>
+                    <div class="search-result">
+                        <h4><i class="fas fa-image"></i> Изображение: Закат на море</h4>
+                        <p>Изображения > Отпуск 2023</p>
+                    </div>
+                    <div class="search-result">
+                        <h4><i class="fas fa-cog"></i> Настройка: Персонализация</h4>
+                        <p>Системные настройки > Персонализация</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно уведомлений -->
+    <div class="win12-modal" id="notifications-modal">
+        <div class="modal-content">
+            <button class="modal-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="modal-header">
+                <h2 class="modal-title">Уведомления</h2>
+                <div class="modal-subtitle">Последние события и сообщения</div>
+            </div>
+            <div class="modal-body">
+                <div class="notification-item unread">
+                    <div class="notification-badge"></div>
+                    <h4><i class="fas fa-calendar-check"></i> Напоминание о встрече</h4>
+                    <p>У вас запланирована встреча через 30 минут</p>
+                    <div class="notification-time">10 минут назад</div>
+                </div>
+                <div class="notification-item">
+                    <h4><i class="fas fa-cloud-download-alt"></i> Обновление системы</h4>
+                    <p>Доступно обновление Windows 12 версия 22H2</p>
+                    <div class="notification-time">2 часа назад</div>
+                </div>
+                <div class="notification-item">
+                    <h4><i class="fas fa-envelope"></i> Новое сообщение</h4>
+                    <p>Алексей Иванов: "Привет! Проверь последние правки..."</p>
+                    <div class="notification-time">5 часов назад</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn">Очистить все</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно быстрых настроек -->
+    <div class="win12-modal" id="quick-settings-modal">
+        <div class="modal-content">
+            <button class="modal-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="modal-header">
+                <h2 class="modal-title">Быстрые настройки</h2>
+                <div class="modal-subtitle">Управление системными параметрами</div>
+            </div>
+            <div class="modal-body">
+                <h3 class="quick-settings-title">Настройки системы</h3>
+                <div class="quick-settings-grid">
+                    <div class="quick-setting-item">
+                        <div class="setting-tooltip">Wi-Fi</div>
+                        <div class="quick-setting-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <div class="quick-setting-label">Wi-Fi</div>
+                    </div>
+                    <div class="quick-setting-item">
+                        <div class="setting-tooltip">Bluetooth</div>
+                        <div class="quick-setting-icon">
+                            <i class="fas fa-bluetooth"></i>
+                        </div>
+                        <div class="quick-setting-label">Bluetooth</div>
+                    </div>
+                    <div class="quick-setting-item">
+                        <div class="setting-tooltip">Режим полета</div>
+                        <div class="quick-setting-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="quick-setting-label">Режим полета</div>
+                    </div>
+                    <div class="quick-setting-item">
+                        <div class="setting-tooltip">Экономия заряда</div>
+                        <div class="quick-setting-icon">
+                            <i class="fas fa-battery-quarter"></i>
+                        </div>
+                        <div class="quick-setting-label">Экономия заряда</div>
+                    </div>
+                    <div class="quick-setting-item">
+                        <div class="setting-tooltip">Темная тема</div>
+                        <div class="quick-setting-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="quick-setting-label">Темная тема</div>
+                    </div>
+                    <div class="quick-setting-item">
+                        <div class="setting-tooltip">Режим фокусировки</div>
+                        <div class="quick-setting-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="quick-setting-label">Фокусировка</div>
+                    </div>
+                    <div class="quick-setting-item">
+                        <div class="setting-tooltip">Локация</div>
+                        <div class="quick-setting-icon">
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+                        <div class="quick-setting-label">Локация</div>
+                    </div>
+                    <div class="quick-setting-item">
+                        <div class="setting-tooltip">Проектор</div>
+                        <div class="quick-setting-icon">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <div class="quick-setting-label">Проектор</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно календаря -->
+    <div class="win12-modal" id="calendar-modal">
+        <div class="modal-content">
+            <button class="modal-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="modal-header">
+                <h2 class="modal-title">Календарь</h2>
+                <div class="modal-subtitle">Июнь 2023</div>
+            </div>
+            <div class="modal-body">
+                <div class="calendar-header">
+                    <div class="calendar-nav">
+                        <div class="calendar-nav-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="calendar-nav-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="calendar-month">Июнь 2023</div>
+                    <div class="calendar-nav-btn">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid">
+                    <div class="calendar-day-header">Пн</div>
+                    <div class="calendar-day-header">Вт</div>
+                    <div class="calendar-day-header">Ср</div>
+                    <div class="calendar-day-header">Чт</div>
+                    <div class="calendar-day-header">Пт</div>
+                    <div class="calendar-day-header">Сб</div>
+                    <div class="calendar-day-header">Вс</div>
+                    
+                    <div class="calendar-day other-month">29</div>
+                    <div class="calendar-day other-month">30</div>
+                    <div class="calendar-day other-month">31</div>
+                    <div class="calendar-day">1</div>
+                    <div class="calendar-day">2</div>
+                    <div class="calendar-day">3</div>
+                    <div class="calendar-day">4</div>
+                    
+                    <div class="calendar-day">5</div>
+                    <div class="calendar-day">6</div>
+                    <div class="calendar-day">7</div>
+                    <div class="calendar-day">8</div>
+                    <div class="calendar-day">9</div>
+                    <div class="calendar-day">10</div>
+                    <div class="calendar-day">11</div>
+                    
+                    <div class="calendar-day">12</div>
+                    <div class="calendar-day">13</div>
+                    <div class="calendar-day">14</div>
+                    <div class="calendar-day">15</div>
+                    <div class="calendar-day">16</div>
+                    <div class="calendar-day">17</div>
+                    <div class="calendar-day">18</div>
+                    
+                    <div class="calendar-day">19</div>
+                    <div class="calendar-day">20</div>
+                    <div class="calendar-day">21</div>
+                    <div class="calendar-day today">22</div>
+                    <div class="calendar-day">23</div>
+                    <div class="calendar-day">24</div>
+                    <div class="calendar-day">25</div>
+                    
+                    <div class="calendar-day">26</div>
+                    <div class="calendar-day">27</div>
+                    <div class="calendar-day">28</div>
+                    <div class="calendar-day">29</div>
+                    <div class="calendar-day">30</div>
+                    <div class="calendar-day other-month">1</div>
+                    <div class="calendar-day other-month">2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="terminal-container terminal-visible" id="terminal">
+        <div class="terminal-header">
+            <div class="win12-start">
+                <div class="win12-logo">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div class="win12-title">Терминал портфолио</div>
+            </div>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+            <div class="terminal-line" id="current-line">
+                <span class="terminal-prompt">➜</span> 
+                <span class="terminal-prompt" style="color: var(--win-purple);">~</span> 
+                <span class="terminal-prompt">❯</span>
+                <input type="text" class="terminal-input" id="command-input" autofocus>
+                <span class="cursor"></span>
+            </div>
+            <div id="command-output"></div>
+        </div>
+    </div>
+
+    <div class="content-section" id="about-section">
+        <button class="back-to-terminal-btn" id="back-to-terminal">
+            <i class="fas fa-arrow-left"></i> Назад в терминал
+        </button>
+        
+        <div class="win12-about">
+            <div class="win12-nav">
+                <div class="win12-nav-header">
+                    <div class="win12-nav-title">
+                        <i class="fas fa-user-circle"></i>
+                        Профиль
+                    </div>
+                    <div class="win12-nav-subtitle">Алексей Иванов</div>
+                </div>
+                
+                <div class="win12-nav-item active" data-target="about">
+                    <div class="win12-nav-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    Обо мне
+                </div>
+                
+                <div class="win12-nav-item" data-target="skills">
+                    <div class="win12-nav-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    Навыки
+                </div>
+                
+                <div class="win12-nav-item" data-target="interests">
+                    <div class="win12-nav-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    Мои интересы
+                </div>
+                
+                <div class="win12-nav-item" data-target="contact">
+                    <div class="win12-nav-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    Контакты
+                </div>
+                
+                <div class="win12-nav-item" data-target="education">
+                    <div class="win12-nav-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    Образование
+                </div>
+            </div>
+            
+            <div class="win12-content">
+                <div class="win12-content-section active" id="about-section-content">
+                    <div class="win12-section-header">
+                        <div class="win12-section-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h2 class="win12-section-title">Обо мне</h2>
+                    </div>
+                    
+                    <div class="win12-grid">
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-info-circle"></i>
+                                Основная информация
+                            </h3>
+                            <p>Привет! Я Алексей, фронтенд-разработчик с более чем 5-летним опытом создания современных веб-приложений. Специализируюсь на разработке пользовательских интерфейсов с использованием React, Vue.js и TypeScript.</p>
+                            <p>Моя страсть — создание интуитивных, производительных и визуально привлекательных приложений, которые решают реальные проблемы пользователей.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="win12-btn">
+                        <i class="fas fa-download"></i> Скачать резюме
+                    </button>
+                </div>
+                
+                <div class="win12-content-section" id="skills-section-content">
+                    <div class="win12-section-header">
+                        <div class="win12-section-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h2 class="win12-section-title">Мои навыки</h2>
+                    </div>
+                    
+                    <div class="win12-grid">
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-laptop-code"></i>
+                                Технические навыки
+                            </h3>
+                            <div class="win12-skills">
+                                <span class="win12-skill">HTML5/CSS3</span>
+                                <span class="win12-skill">JavaScript</span>
+                                <span class="win12-skill">TypeScript</span>
+                                <span class="win12-skill">React</span>
+                                <span class="win12-skill">Vue.js</span>
+                                <span class="win12-skill">Next.js</span>
+                                <span class="win12-skill">Redux</span>
+                                <span class="win12-skill">Node.js</span>
+                                <span class="win12-skill">Responsive Design</span>
+                                <span class="win12-skill">Webpack</span>
+                            </div>
+                        </div>
+                        
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-certificate"></i>
+                                Сертификаты
+                            </h3>
+                            <div class="win12-skills">
+                                <span class="win12-skill">Google UX Design</span>
+                                <span class="win12-skill">AWS Certified</span>
+                                <span class="win12-skill">React Advanced</span>
+                                <span class="win12-skill">Frontend Masters</span>
+                                <span class="win12-skill">JavaScript Expert</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="win12-content-section" id="interests-section-content">
+                    <div class="win12-section-header">
+                        <div class="win12-section-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h2 class="win12-section-title">Мои интересы</h2>
+                    </div>
+                    
+                    <div class="win12-grid">
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-paint-brush"></i>
+                                Дизайн и UX/UI
+                            </h3>
+                            <p>Увлекаюсь созданием современных пользовательских интерфейсов. Постоянно изучаю новые тенденции в дизайне, принципы юзабилити и психологию взаимодействия пользователя с интерфейсом.</p>
+                            <p>В свободное время экспериментирую с Figma и Adobe XD, создаю прототипы и концепты.</p>
+                        </div>
+                        
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-robot"></i>
+                                Искусственный интеллект
+                            </h3>
+                            <p>Интересуюсь применением ИИ в веб-разработке. Изучаю возможности интеграции машинного обучения в пользовательские интерфейсы для создания адаптивных и персонализированных систем.</p>
+                        </div>
+                        
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-gamepad"></i>
+                                Игровая разработка
+                            </h3>
+                            <p>Разработка игр - мое хобби. Работаю с Unity и Three.js, создаю небольшие браузерные игры и интерактивные 3D-проекты. Участвую в game jams и хакатонах.</p>
+                        </div>
+                        
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-book"></i>
+                                Обучение и менторинг
+                            </h3>
+                            <p>Провожу воркшопы и мастер-классы по фронтенд-разработке. Автор статей на Medium и Хабре. Помогаю начинающим разработчикам найти свой путь в IT.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="win12-content-section" id="contact-section-content">
+                    <div class="win12-section-header">
+                        <div class="win12-section-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h2 class="win12-section-title">Контакты</h2>
+                    </div>
+                    
+                    <div class="win12-grid">
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-address-card"></i>
+                                Контактная информация
+                            </h3>
+                            <div class="win12-contact-item">
+                                <div class="win12-contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <div>Москва, Россия</div>
+                                    <div class="win12-text-secondary">Локация</div>
+                                </div>
+                            </div>
+                            
+                            <div class="win12-contact-item">
+                                <div class="win12-contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <div>alexey@portfolio.dev</div>
+                                    <div class="win12-text-secondary">Email</div>
+                                </div>
+                            </div>
+                            
+                            <div class="win12-contact-item">
+                                <div class="win12-contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <div>+7 (999) 123-45-67</div>
+                                    <div class="win12-text-secondary">Телефон</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fab fa-github"></i>
+                                Социальные сети
+                            </h3>
+                            <div class="win12-contact-item">
+                                <div class="win12-contact-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div>
+                                    <div>github.com/alexey-dev</div>
+                                    <div class="win12-text-secondary">GitHub</div>
+                                </div>
+                            </div>
+                            
+                            <div class="win12-contact-item">
+                                <div class="win12-contact-icon">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                                <div>
+                                    <div>linkedin.com/in/alexey-dev</div>
+                                    <div class="win12-text-secondary">LinkedIn</div>
+                                </div>
+                            </div>
+                            
+                            <div class="win12-contact-item">
+                                <div class="win12-contact-icon">
+                                    <i class="fab fa-telegram"></i>
+                                </div>
+                                <div>
+                                    <div>@alexey_dev</div>
+                                    <div class="win12-text-secondary">Telegram</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="win12-content-section" id="education-section-content">
+                    <div class="win12-section-header">
+                        <div class="win12-section-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h2 class="win12-section-title">Образование</h2>
+                    </div>
+                    
+                    <div class="win12-grid">
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-university"></i>
+                                Высшее образование
+                            </h3>
+                            <p><strong>Московский Технический Университет</strong></p>
+                            <p>Факультет: Прикладная информатика</p>
+                            <p>Степень: Магистр</p>
+                            <p>2014-2019</p>
+                        </div>
+                        
+                        <div class="win12-info-block">
+                            <h3 class="win12-info-title">
+                                <i class="fas fa-certificate"></i>
+                                Курсы и тренинги
+                            </h3>
+                            <p><strong>Advanced Frontend Development</strong> - Яндекс.Практикум</p>
+                            <p><strong>React & Redux Professional</strong> - Udemy</p>
+                            <p><strong>UX/UI Design Specialization</strong> - Coursera</p>
+                            <p><strong>Web Performance Optimization</strong> - Frontend Masters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section" id="projects-section">
+        <button class="back-to-terminal-btn" id="back-to-terminal-projects">
+            <i class="fas fa-arrow-left"></i> Назад в терминал
+        </button>
+        
+        <div class="win12-projects">
+            <div class="win12-section-header">
+                <div class="win12-section-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h2 class="win12-section-title">Мои проекты</h2>
+            </div>
+            
+            <div class="projects-filters">
+                <button class="win12-filter-btn active">Все проекты</button>
+                <button class="win12-filter-btn">Активные</button>
+                <button class="win12-filter-btn">Завершенные</button>
+                <button class="win12-filter-btn">Архивные</button>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="win12-project-card">
+                    <div class="project-status win12-status-active">Активен</div>
+                    <div class="win12-project-image">
+                        <div class="project-image-content">
+                            GMOD2
+                        </div>
+                    </div>
+                    <h3>Gmod2</h3>
+                    <p>Легендарная песочница с новым движком и обновленными технологиями. Полная переработка физики, графики и сетевой инфраструктуры.</p>
+                    
+                    <div class="project-tech">
+                        <span class="win12-tech-badge">Unity</span>
+                        <span class="win12-tech-badge">DirectX 12</span>
+                        <span class="win12-tech-badge">LuaJIT</span>
+                        <span class="win12-tech-badge">TypeScriptToLua</span>
+                        <span class="win12-tech-badge">Go</span>
+                    </div>
+                    
+                    <div class="project-footer">
+                        <span class="win12-project-date">Срок: Q3 2025</span>
+                        <button class="win12-project-btn" data-project="gmod2">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="win12-project-card">
+                    <div class="project-status win12-status-completed">Завершен</div>
+                    <div class="win12-project-image">
+                        <div class="project-image-content">
+                            NEUROSYNC
+                        </div>
+                    </div>
+                    <h3>NeuroSync API</h3>
+                    <p>Платформа для синхронизации нейроинтерфейсов с облачными сервисами. Поддержка биометрических данных в реальном времени.</p>
+                    
+                    <div class="project-tech">
+                        <span class="win12-tech-badge">Node.js</span>
+                        <span class="win12-tech-badge">WebSockets</span>
+                        <span class="win12-tech-badge">TensorFlow.js</span>
+                        <span class="win12-tech-badge">MongoDB</span>
+                    </div>
+                    
+                    <div class="project-footer">
+                        <span class="win12-project-date">Завершен: 2024</span>
+                        <button class="win12-project-btn" data-project="neurosync">Демо</button>
+                    </div>
+                </div>
+                
+                <div class="win12-project-card">
+                    <div class="project-status win12-status-active">Активен</div>
+                    <div class="win12-project-image">
+                        <div class="project-image-content">
+                            QUANTUM DB
+                        </div>
+                    </div>
+                    <h3>Quantum DB</h3>
+                    <p>Квантовая база данных с поддержкой сложных запросов за полиномиальное время. Интеграция с классическими СУБД.</p>
+                    
+                    <div class="project-tech">
+                        <span class="win12-tech-badge">Q#</span>
+                        <span class="win12-tech-badge">Python</span>
+                        <span class="win12-tech-badge">C++</span>
+                        <span class="win12-tech-badge">PostgreSQL</span>
+                    </div>
+                    
+                    <div class="project-footer">
+                        <span class="win12-project-date">Срок: Q4 2025</span>
+                        <button class="win12-project-btn" data-project="quantum">Исследование</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section" id="blog-section">
+        <button class="back-to-terminal-btn" id="back-to-terminal-blog">
+            <i class="fas fa-arrow-left"></i> Назад в терминал
+        </button>
+        
+        <div class="win12-blog">
+            <div class="win12-section-header">
+                <div class="win12-section-icon">
+                    <i class="fas fa-blog"></i>
+                </div>
+                <h2 class="win12-section-title">Мой Блог</h2>
+            </div>
+            
+            <div class="blog-filters">
+                <button class="win12-filter-btn active">Все статьи</button>
+                <button class="win12-filter-btn">Frontend</button>
+                <button class="win12-filter-btn">UI/UX</button>
+                <button class="win12-filter-btn">ИИ</button>
+                <button class="win12-filter-btn">Оптимизация</button>
+            </div>
+            
+            <div class="blog-grid">
+                <div class="win12-blog-card">
+                    <div class="blog-header">
+                        <span class="blog-category">Frontend</span>
+                        <span class="blog-date">15 мая 2024</span>
+                    </div>
+                    <h3>Создание современных UI с использованием CSS-переменных и кастомных свойств</h3>
+                    <p>Как использовать CSS Variables для создания гибких и легко настраиваемых интерфейсов. Практические примеры и лучшие практики.</p>
+                    
+                    <div class="blog-tags">
+                        <span class="win12-tag">CSS</span>
+                        <span class="win12-tag">UI Design</span>
+                        <span class="win12-tag">Web Development</span>
+                    </div>
+                    
+                    <div class="blog-footer">
+                        <div class="blog-author">
+                            <div class="author-avatar">AI</div>
+                            <div class="author-name">Алексей Иванов</div>
+                        </div>
+                        <button class="win12-blog-btn" data-blog="css-vars">Читать</button>
+                    </div>
+                </div>
+                
+                <div class="win12-blog-card">
+                    <div class="blog-header">
+                        <span class="blog-category">ИИ</span>
+                        <span class="blog-date">28 апреля 2024</span>
+                    </div>
+                    <h3>Генерация UI компонентов с помощью нейросетей: будущее фронтенда?</h3>
+                    <p>Исследуем возможности генерации интерфейсов с помощью GPT-4 и других ИИ-моделей. Плюсы, минусы и этические аспекты.</p>
+                    
+                    <div class="blog-tags">
+                        <span class="win12-tag">AI</span>
+                        <span class="win12-tag">React</span>
+                        <span class="win12-tag">Future</span>
+                    </div>
+                    
+                    <div class="blog-footer">
+                        <div class="blog-author">
+                            <div class="author-avatar">AI</div>
+                            <div class="author-name">Алексей Иванов</div>
+                        </div>
+                        <button class="win12-blog-btn" data-blog="ai-ui">Читать</button>
+                    </div>
+                </div>
+                
+                <div class="win12-blog-card">
+                    <div class="blog-header">
+                        <span class="blog-category">Оптимизация</span>
+                        <span class="blog-date">12 апреля 2024</span>
+                    </div>
+                    <h3>Оптимизация производительности React приложений: современные техники</h3>
+                    <p>От memoization до concurrent mode. Разбираем эффективные методы оптимизации производительности сложных React-приложений.</p>
+                    
+                    <div class="blog-tags">
+                        <span class="win12-tag">React</span>
+                        <span class="win12-tag">Performance</span>
+                        <span class="win12-tag">JavaScript</span>
+                    </div>
+                    
+                    <div class="blog-footer">
+                        <div class="blog-author">
+                            <div class="author-avatar">AI</div>
+                            <div class="author-name">Алексей Иванов</div>
+                        </div>
+                        <button class="win12-blog-btn" data-blog="react-optimization">Читать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section" id="settings-section">
+        <button class="back-to-terminal-btn" id="back-to-terminal-settings">
+            <i class="fas fa-arrow-left"></i> Назад в терминал
+        </button>
+        
+        <div class="win12-about">
+            <div class="win12-nav">
+                <div class="win12-nav-header">
+                    <div class="win12-nav-title">
+                        <i class="fas fa-sliders-h"></i>
+                        Параметры
+                    </div>
+                </div>
+                
+                <div class="win12-nav-item active" data-target="personalization">
+                    <div class="win12-nav-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    Персонализация
+                </div>
+                
+                <div class="win12-nav-item" data-target="language">
+                    <div class="win12-nav-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    Язык и время
+                </div>
+                
+                <div class="win12-nav-item" data-target="accessibility">
+                    <div class="win12-nav-icon">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    Специальные возможности
+                </div>
+                
+                <div class="win12-nav-item" data-target="privacy">
+                    <div class="win12-nav-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    Конфиденциальность
+                </div>
+            </div>
+            
+            <div class="win12-content">
+                <div class="win12-content-section active" id="personalization-section">
+                    <h3 class="win12-subtitle">Персонализация</h3>
+                    
+                    <div class="win12-setting-group">
+                        <label>Тема оформления</label>
+                        <div class="theme-selector">
+                            <div class="theme-option active" data-theme="light">
+                                <div class="theme-preview light-theme"></div>
+                                <span>Светлая</span>
+                            </div>
+                            <div class="theme-option" data-theme="dark">
+                                <div class="theme-preview dark-theme"></div>
+                                <span>Тёмная</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>Фоновое изображение</label>
+                        <div class="background-selector">
+                            <div class="background-option active" data-background="default">
+                                <div class="background-preview bg-default"></div>
+                                <span>По умолчанию</span>
+                            </div>
+                            <div class="background-option" data-background="mountains">
+                                <div class="background-preview bg-mountains"></div>
+                                <span>Горы</span>
+                            </div>
+                            <div class="background-option" data-background="space">
+                                <div class="background-preview bg-space"></div>
+                                <span>Космос</span>
+                            </div>
+                            <div class="background-option" data-background="geometry">
+                                <div class="background-preview bg-geometry"></div>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>Акцентный цвет</label>
+                        <div class="color-selector">
+                            <div class="color-option active" data-color="#6b69d6" style="background: #6b69d6;"></div>
+                            <div class="color-option" data-color="#a162f7" style="background: #a162f7;"></div>
+                            <div class="color-option" data-color="#5d8afa" style="background: #5d8afa;"></div>
+                            <div class="color-option" data-color="#8a88e8" style="background: #8a88e8;"></div>
+                            <div class="color-option" data-color="#5d5bd6" style="background: #5d5bd6;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>Прозрачность элементов</label>
+                        <input type="range" min="0" max="100" value="80" id="transparency-slider">
+                        <span id="transparency-value">80%</span>
+                    </div>
+                    
+                    <button class="win12-btn" id="apply-theme">
+                        <i class="fas fa-check"></i> Применить
+                    </button>
+                </div>
+                
+                <div class="win12-content-section" id="language-section">
+                    <h3 class="win12-subtitle">Язык и регион</h3>
+                    
+                    <div class="win12-setting-group">
+                        <label>Язык интерфейса</label>
+                        <select id="language-select">
+                            <option value="ru" selected>Русский</option>
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="de">Deutsch</option>
+                        </select>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>Формат даты</label>
+                        <select id="date-format-select">
+                            <option value="ru" selected>дд.мм.гггг</option>
+                            <option value="us">мм/дд/гггг</option>
+                            <option value="int">гггг-мм-дд</option>
+                        </select>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>Часовой пояс</label>
+                        <select id="timezone-select">
+                            <option value="MSK" selected>(UTC+3) Москва</option>
+                            <option value="LON">(UTC+1) Лондон</option>
+                            <option value="NY">(UTC-4) Нью-Йорк</option>
+                        </select>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>Формат времени</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="time-format" value="24" checked> 24-часовой
+                            </label>
+                            <label>
+                                <input type="radio" name="time-format" value="12"> 12-часовой
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="win12-btn" id="apply-language">
+                        <i class="fas fa-check"></i> Применить
+                    </button>
+                </div>
+                
+                <div class="win12-content-section" id="accessibility-section">
+                    <h3 class="win12-subtitle">Специальные возможности</h3>
+                    
+                    <div class="win12-setting-group">
+                        <label>
+                            <input type="checkbox" id="high-contrast-toggle"> 
+                            Высокая контрастность
+                        </label>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>Размер текста</label>
+                        <select id="font-size-select">
+                            <option value="small">Меньше (100%)</option>
+                            <option value="medium" selected>Средний (125%)</option>
+                            <option value="large">Больше (150%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>
+                            <input type="checkbox" id="animations-toggle" checked> 
+                            Анимации интерфейса
+                        </label>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>Упрощённый просмотр</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="simplified-view" value="off" checked> Отключено
+                            </label>
+                            <label>
+                                <input type="radio" name="simplified-view" value="on"> Включено
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="win12-btn" id="apply-accessibility">
+                        <i class="fas fa-check"></i> Применить
+                    </button>
+                </div>
+                
+                <div class="win12-content-section" id="privacy-section">
+                    <h3 class="win12-subtitle">Конфиденциальность</h3>
+                    
+                    <div class="win12-setting-group">
+                        <label>
+                            <input type="checkbox" id="analytics-toggle" checked> 
+                            Отправлять данные об использовании
+                        </label>
+                        <p class="win12-hint">Помогает улучшать приложение</p>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>
+                            <input type="checkbox" id="cookies-toggle" checked> 
+                            Разрешить использование cookies
+                        </label>
+                    </div>
+                    
+                    <div class="win12-setting-group">
+                        <label>Уровень конфиденциальности</label>
+                        <select id="privacy-level-select">
+                            <option value="basic">Базовый</option>
+                            <option value="balanced" selected>Сбалансированный</option>
+                            <option value="strict">Строгий</option>
+                        </select>
+                    </div>
+                    
+                    <button class="win12-btn" id="privacy-report-btn">
+                        <i class="fas fa-shield-alt"></i> Просмотреть отчет
+                    </button>
+                    
+                    <button class="win12-btn win12-btn-secondary" id="clear-data-btn">
+                        <i class="fas fa-trash-alt"></i> Очистить данные
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dock">
+        <div class="dock-item" id="terminal-dock">
+            <i class="fas fa-terminal"></i>
+            <span class="dock-indicator">Терминал</span>
+        </div>
+        <div class="dock-item" id="about-dock">
+            <i class="fas fa-user"></i>
+            <span class="dock-indicator">Обо мне</span>
+        </div>
+        <div class="dock-item" id="projects-dock">
+            <i class="fas fa-folder"></i>
+            <span class="dock-indicator">Проекты</span>
+        </div>
+        <div class="dock-item" id="blog-dock">
+            <i class="fas fa-blog"></i>
+            <span class="dock-indicator">Блог</span>
+        </div>
+        <div class="dock-item" id="settings-dock">
+            <i class="fas fa-cog"></i>
+            <span class="dock-indicator">Настройки</span>
+        </div>
+    </div>
+
+<div class="win12-modal" id="project-modal">
+    <div class="modal-content">
+        <button class="modal-close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <div class="modal-header">
+            <h2 class="modal-title" id="modal-project-title">Название проекта</h2>
+            <div class="modal-status" id="modal-project-status"></div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-content-wrapper">
+                <div class="modal-image-column">
+                    <div class="circle-3d-container">
+                        <div class="circle-3d" id="modal-project-image">
+                            <div class="circle-depth"></div>
+                            <div class="circle-depth-2"></div>
+                            <div class="circle-3d-inner">
+                                <div class="circle-content">GMOD2</div>
+                            </div>
+                        </div>
+                        <div class="circle-glow"></div>
+                        <div class="circle-reflection"></div>
+                    </div>
+                </div>
+                <div class="modal-description-column">
+                    <div class="gradient-text-block">
+                        <div class="gradient-line"></div>
+                        <div class="text-content" id="modal-project-description">
+                            <h3>О проекте</h3>
+                            <p>Легендарная песочница с новым движком и обновленными технологиями. Полная переработка физики, графики и сетевой инфраструктуры.</p>
+                            
+                            <h3>Особенности</h3>
+                            <ul>
+                                <li>Новый физический движок на основе реал-тайм симуляции</li>
+                                <li>Поддержка Ray Tracing и DLSS 3.0</li>
+                                <li>Полностью переработанная система модов и аддонов</li>
+                                <li>Встроенная поддержка VR-устройств</li>
+                                <li>Кроссплатформенная игра (PC, консоли, мобильные устройства)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-tech" id="modal-project-tech">
+                <div class="modal-tech-title">
+                    <i class="fas fa-code"></i>
+                    <span>Используемые технологии</span>
+                </div>
+                <div class="modal-tech-list">
+                    <div class="modal-tech-item"><i class="fab fa-unity"></i> Unity</div>
+                    <div class="modal-tech-item"><i class="fas fa-cube"></i> DirectX 12</div>
+                    <div class="modal-tech-item"><i class="fas fa-microchip"></i> LuaJIT</div>
+                    <div class="modal-tech-item"><i class="fab fa-js"></i> TypeScriptToLua</div>
+                    <div class="modal-tech-item"><i class="fab fa-golang"></i> Go</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" id="modal-project-link">
+                    <i class="fas fa-external-link-alt"></i> 
+                    <span>Посетить сайт</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Добавьте эту структуру после модалки проектов (перед закрывающим </body>) -->
+<div class="win12-modal" id="blog-modal">
+    <div class="modal-content">
+        <button class="modal-close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        
+        <div class="modal-header">
+            <div class="blog-meta">
+                <span class="blog-category" id="modal-blog-category">Frontend</span>
+                <span class="blog-date" id="modal-blog-date">15 мая 2024</span>
+            </div>
+            <h2 class="modal-title" id="modal-blog-title">Название статьи</h2>
+        </div>
+        
+        <div class="modal-body">
+            <div class="blog-author">
+                <div class="author-avatar">AI</div>
+                <div class="author-name" id="modal-blog-author">Алексей Иванов</div>
+            </div>
+            
+            <div class="blog-content" id="modal-blog-content">
+                <!-- Контент статьи будет вставлен сюда -->
+            </div>
+            
+            <div class="blog-tags" id="modal-blog-tags">
+                <!-- Теги будут вставлены сюда -->
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="modal-btn modal-btn-primary" id="modal-blog-link">
+                <i class="fab fa-medium"></i> 
+                <span>Читать на Medium</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Исправленный ASCII-арт для FIXITFUN
+    const asciiArt = `
+        ███████╗██╗██╗  ██╗██╗████████╗███████╗██╗███╗   ██╗
+        ██╔════╝██║╚██╗██╔╝██║╚══██╔══╝██╔════╝██║████╗  ██║
+        █████╗  ██║ ╚███╔╝ ██║   ██║   █████╗  ██║██╔██╗ ██║
+        ██╔══╝  ██║ ██╔██╗ ██║   ██║   ██╔══╝  ██║██║╚██╗██║
+        ██║     ██║██╔╝ ██╗██║   ██║   ███████╗██║██║ ╚████║
+        ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚══════╝╚═╝╚═╝  ╚═══╝
+    `;
+
+    // Функция для вывода ASCII-арта с текстом справа
+    function showWelcomeMessage() {
+        const welcomeContainer = document.createElement('div');
+        welcomeContainer.className = 'welcome-container';
+        welcomeContainer.style.display = 'flex';
+        welcomeContainer.style.gap = '20px';
+        welcomeContainer.style.alignItems = 'center';
+        welcomeContainer.style.marginBottom = '20px';
+        
+        const asciiElement = document.createElement('pre');
+        asciiElement.style.color = 'var(--win-purple)';
+        asciiElement.style.fontFamily = "'Cascadia Code', monospace";
+        asciiElement.style.lineHeight = '1.2';
+        asciiElement.style.margin = '0';
+        asciiElement.textContent = asciiArt;
+        
+        const textElement = document.createElement('div');
+        textElement.innerHTML = `
+            <div style="font-size: 1.2rem; font-weight: bold;">Добро пожаловать!</div>
+            <div>Введите "help" для списка команд</div>
+        `;
+        
+        welcomeContainer.appendChild(asciiElement);
+        welcomeContainer.appendChild(textElement);
+        
+        document.getElementById('command-output').appendChild(welcomeContainer);
+    }
+
+    // =====================
+    // СИСТЕМНОЕ МЕНЮ (ОС)
+    // =====================
+    const osLogo = document.getElementById('os-logo');
+    const osMenu = document.querySelector('.os-menu');
+    const shutdownBtn = document.getElementById('shutdown');
+    
+    // Обработчики для меню ОС
+    if (osLogo) {
+        osLogo.addEventListener('click', function(e) {
+            e.stopPropagation();
+            osMenu.classList.toggle('visible');
+        });
+    }
+    
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(e) {
+        if (osLogo && !osLogo.contains(e.target)) {
+            osMenu.classList.remove('visible');
+        }
+    });
+    
+    // Переход по пунктам меню
+    document.querySelectorAll('.menu-item').forEach(item => {
+        if (item !== shutdownBtn) {
+            item.addEventListener('click', function() {
+                const target = this.dataset.target;
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(target).classList.add('active');
+                
+                if (terminal) {
+                    terminal.classList.remove('terminal-visible');
+                    terminal.classList.add('hidden');
+                }
+                
+                if (osMenu) osMenu.classList.remove('visible');
+                
+                // Обновляем активный элемент в доке
+                resetDockActive();
+                document.getElementById(`${target.split('-')[0]}-dock`).classList.add('active');
+            });
+        }
+    });
+    
+    // "Завершение работы"
+    if (shutdownBtn) {
+        shutdownBtn.addEventListener('click', function() {
+            if (osMenu) osMenu.classList.remove('visible');
+            
+            // Создаем уведомление о завершении работы
+            const notification = document.createElement('div');
+            notification.className = 'win12-notification show';
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    <i class="fas fa-power-off"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">Система</div>
+                    <div class="notification-text">Завершение работы...</div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Анимация выключения
+            setTimeout(() => {
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 1s ease';
+            }, 500);
+            
+            // Перезагрузка страницы через 1.5 секунды
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        });
+    }
+
+    // =====================
+    // ОСНОВНОЙ СКРИПТ
+    // =====================
+    // Общие элементы интерфейса
+    const timeElement = document.getElementById('current-time');
+    
+    // Элементы верхней панели
+    const searchIcon = document.getElementById('search-icon');
+    const settingsIcon = document.getElementById('settings-icon');
+    const bellIcon = document.getElementById('bell-icon');
+    
+    // Модальные окна верхней панели
+    const searchModal = document.getElementById('search-modal');
+    const settingsModal = document.getElementById('quick-settings-modal');
+    const notificationsModal = document.getElementById('notifications-modal');
+    const calendarModal = document.getElementById('calendar-modal');
+    
+    // Элементы терминала и портфолио
+    const terminal = document.getElementById('terminal');
+    const commandOutput = document.getElementById('command-output');
+    const terminalBody = document.getElementById('terminal-body');
+    const aboutSection = document.getElementById('about-section');
+    const projectsSection = document.getElementById('projects-section');
+    const blogSection = document.getElementById('blog-section');
+    const settingsSection = document.getElementById('settings-section');
+    
+    // Кнопки возврата
+    const backButton = document.getElementById('back-to-terminal');
+    const backButtonProjects = document.getElementById('back-to-terminal-projects');
+    const backButtonBlog = document.getElementById('back-to-terminal-blog');
+    const backButtonSettings = document.getElementById('back-to-terminal-settings');
+    
+    // Док-панель
+    const terminalDock = document.getElementById('terminal-dock');
+    const aboutDock = document.getElementById('about-dock');
+    const projectsDock = document.getElementById('projects-dock');
+    const blogDock = document.getElementById('blog-dock');
+    const settingsDock = document.getElementById('settings-dock');
+    const dockItems = document.querySelectorAll('.dock-item');
+    
+    // Навигация
+    const win12NavItems = document.querySelectorAll('.win12-nav-item');
+    const win12Sections = document.querySelectorAll('.win12-content-section');
+    const settingsNavItems = document.querySelectorAll('#settings-section .win12-nav-item');
+    const settingsSections = document.querySelectorAll('#settings-section .win12-content-section');
+    
+    // Настройки
+    const themeOptions = document.querySelectorAll('.theme-option');
+    const backgroundOptions = document.querySelectorAll('.background-option');
+    const colorOptions = document.querySelectorAll('.color-option');
+    const transparencySlider = document.getElementById('transparency-slider');
+    const transparencyValue = document.getElementById('transparency-value');
+    const applyThemeBtn = document.getElementById('apply-theme');
+    const applyLanguageBtn = document.getElementById('apply-language');
+    const applyAccessibilityBtn = document.getElementById('apply-accessibility');
+    
+    // Модальные окна проектов и блога
+    const projectModal = document.getElementById('project-modal');
+    const blogModal = document.getElementById('blog-modal');
+    const modalCloseBtns = document.querySelectorAll('.modal-close');
+    const projectButtons = document.querySelectorAll('.win12-project-btn');
+    const blogButtons = document.querySelectorAll('.win12-blog-btn');
+
+    // =====================
+    // ОБЩИЕ ФУНКЦИИ
+    // =====================
+    
+    // Обновление времени
+    function updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        
+        // Обновляем время в верхней панели
+        if (timeElement) {
+            const timeSpan = timeElement.querySelector('#time');
+            if (timeSpan) timeSpan.textContent = timeString;
+        }
+    }
+    
+    // Управление модальными окнами
+    function toggleModal(modal, show = true) {
+        if (show) {
+            // Закрыть все другие модальные окна перед открытием нового
+            document.querySelectorAll('.win12-modal').forEach(m => {
+                if (m !== modal) m.classList.remove('active');
+            });
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    // Показать уведомление
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'win12-notification';
+        notification.innerHTML = `
+            <div class="notification-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">Настройки</div>
+                <div class="notification-text">${message}</div>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => notification.classList.add('show'), 10);
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
+    
+    // =====================
+    // ВЕРХНЯЯ ПАНЕЛЬ
+    // =====================
+    
+    // Обработчики верхней панели
+    if (searchIcon) searchIcon.addEventListener('click', () => toggleModal(searchModal));
+    if (settingsIcon) settingsIcon.addEventListener('click', () => toggleModal(settingsModal));
+    if (bellIcon) bellIcon.addEventListener('click', () => toggleModal(notificationsModal));
+    if (timeElement) timeElement.addEventListener('click', () => toggleModal(calendarModal));
+    
+    // Анимация элементов быстрых настроек
+    document.querySelectorAll('.quick-setting-item').forEach(item => {
+        item.addEventListener('click', function() {
+            this.classList.add('pulse');
+            setTimeout(() => this.classList.remove('pulse'), 500);
+            
+            const icon = this.querySelector('.quick-setting-icon');
+            if (icon) {
+                icon.style.transform = 'scale(1.2)';
+                setTimeout(() => icon.style.transform = 'scale(1)', 300);
+            }
+        });
+    });
+    
+    // Навигация по календарю
+    const prevMonthBtn = document.querySelector('.calendar-nav-btn:first-child');
+    const nextMonthBtn = document.querySelector('.calendar-nav-btn:nth-child(2)');
+    const todayBtn = document.querySelector('.calendar-nav-btn:last-child');
+    const monthElement = document.querySelector('.calendar-month');
+    
+    if (prevMonthBtn) prevMonthBtn.addEventListener('click', () => animateCalendarChange('left'));
+    if (nextMonthBtn) nextMonthBtn.addEventListener('click', () => animateCalendarChange('right'));
+    if (todayBtn) todayBtn.addEventListener('click', highlightToday);
+    
+    function animateCalendarChange(direction) {
+        const calendarGrid = document.querySelector('.calendar-grid');
+        if (!calendarGrid) return;
+        
+        calendarGrid.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        calendarGrid.style.transform = `translateX(${direction === 'left' ? '-20px' : '20px'})`;
+        calendarGrid.style.opacity = '0';
+        
+        setTimeout(() => {
+            const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 
+                          'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+            const currentMonth = monthElement.textContent.split(' ')[0];
+            let newIndex = months.indexOf(currentMonth);
+            
+            if (direction === 'left') newIndex = newIndex === 0 ? 11 : newIndex - 1;
+            else newIndex = newIndex === 11 ? 0 : newIndex + 1;
+            
+            monthElement.textContent = `${months[newIndex]} 2023`;
+            calendarGrid.style.transform = 'translateX(0)';
+            calendarGrid.style.opacity = '1';
+        }, 300);
+    }
+    
+    function highlightToday() {
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            day.classList.remove('today');
+        });
+        document.querySelector('.calendar-day.today')?.classList.add('today');
+    }
+    
+    // Выбор даты в календаре
+    document.querySelectorAll('.calendar-day:not(.other-month)').forEach(day => {
+        day.addEventListener('click', function() {
+            document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+    
+    // =====================
+    // ТЕРМИНАЛ И ПОРТФОЛИО
+    // =====================
+    
+    // Команды терминала
+    const commands = {
+        help: {
+            output: `Доступные команды:
+            <div class="command-list">
+                <div class="command-item"><span class="command-name">about</span> - Информация обо мне</div>
+                <div class="command-item"><span class="command-name">projects</span> - Мои проекты</div>
+                <div class="command-item"><span class="command-name">blog</span> - Последние статьи</div>
+                <div class="command-item"><span class="command-name">settings</span> - Настройки системы</div>
+                <div class="command-item"><span class="command-name">contact</span> - Контактная информация</div>
+                <div class="command-item"><span class="command-name">system</span> - Системная информация</div>
+                <div class="command-item"><span class="command-name">theme</span> - Изменить тему [light|dark]</div>
+                <div class="command-item"><span class="command-name">joke</span> - Случайная шутка про IT</div>
+                <div class="command-item"><span class="command-name">clear</span> - Очистить терминал</div>
+                <div class="command-item"><span class="command-name">exit</span> - Закрыть терминал</div>
+            </div>`
+        },
+        about: { execute: () => openAboutSection() },
+        projects: { execute: () => openProjectsSection() },
+        blog: { execute: () => openBlogSection() },
+        settings: { execute: () => openSettingsSection() },
+        contact: {
+            output: `Контактная информация:
+            <div class="command-output">
+                Email: <span style="color: var(--win-purple);">alexey@portfolio.dev</span>
+                Telegram: <span style="color: var(--win-purple);">@alexey_dev</span>
+                GitHub: <span style="color: var(--win-purple);">github.com/alexey-dev</span>
+            </div>`
+        },
+        system: {
+            output: `Системная информация:
+            <div class="command-output">
+                <pre>ОС: ${navigator.platform}</pre>
+                <pre>Браузер: ${navigator.userAgent.split(') ')[0].split(' (')[1]})</pre>
+                <pre>Разрешение: ${screen.width}x${screen.height}</pre>
+                <pre>ЦП: ${navigator.hardwareConcurrency} ядер</pre>
+            </div>`
+        },
+        theme: {
+            execute: (args) => {
+                if (args[0] === 'dark') {
+                    document.body.classList.add('dark-theme');
+                    document.body.classList.remove('light-theme');
+                    localStorage.setItem('portfolio-theme', 'dark');
+                    return 'Тема изменена на темную';
+                } else if (args[0] === 'light') {
+                    document.body.classList.add('light-theme');
+                    document.body.classList.remove('dark-theme');
+                    localStorage.setItem('portfolio-theme', 'light');
+                    return 'Тема изменена на светлую';
+                }
+                return 'Использование: theme [light|dark]';
+            }
+        },
+        joke: {
+            execute: () => {
+                const jokes = [
+                    "Почему программисты путают Хэллоуин и Рождество? Потому что Oct 31 = Dec 25!",
+                    "Компьютер не может потреблять алкоголь... Но его винчестер иногда нуждается в перезагрузке!",
+                    "Заходит программист в бар и заказывает 1.0000001 пива... Бармен говорит: 'Ошибка округления?'",
+                    "Почему Python не говорит по-французски? Потому что у него нет accent aigu!",
+                    "Сколько программистов нужно, чтобы поменять лампочку? Ни одного, это hardware проблема!"
+                ];
+                return jokes[Math.floor(Math.random() * jokes.length)];
+            }
+        },
+        clear: { execute: () => commandOutput.innerHTML = '' },
+        exit: { execute: () => closeTerminalFunc() }
+    };
+    
+    // Управление разделами портфолио
+    function resetDockActive() {
+        dockItems.forEach(item => item.classList.remove('active'));
+    }
+    
+    function openTerminal() {
+        resetDockActive();
+        if (terminalDock) terminalDock.classList.add('active');
+        if (terminal) {
+            terminal.classList.remove('hidden');
+            terminal.classList.add('terminal-visible');
+        }
+        [aboutSection, projectsSection, blogSection, settingsSection].forEach(s => {
+            if (s) s.classList.remove('active');
+        });
+        createInputLine();
+    }
+    
+    function openAboutSection() {
+        resetDockActive();
+        if (aboutDock) aboutDock.classList.add('active');
+        if (terminal) {
+            terminal.classList.remove('terminal-visible');
+            terminal.classList.add('hidden');
+        }
+        if (aboutSection) aboutSection.classList.add('active');
+        [projectsSection, blogSection, settingsSection].forEach(s => {
+            if (s) s.classList.remove('active');
+        });
+    }
+    
+    function openProjectsSection() {
+        resetDockActive();
+        if (projectsDock) projectsDock.classList.add('active');
+        if (terminal) {
+            terminal.classList.remove('terminal-visible');
+            terminal.classList.add('hidden');
+        }
+        if (projectsSection) projectsSection.classList.add('active');
+        [aboutSection, blogSection, settingsSection].forEach(s => {
+            if (s) s.classList.remove('active');
+        });
+    }
+    
+    function openBlogSection() {
+        resetDockActive();
+        if (blogDock) blogDock.classList.add('active');
+        if (terminal) {
+            terminal.classList.remove('terminal-visible');
+            terminal.classList.add('hidden');
+        }
+        if (blogSection) blogSection.classList.add('active');
+        [aboutSection, projectsSection, settingsSection].forEach(s => {
+            if (s) s.classList.remove('active');
+        });
+    }
+    
+    function openSettingsSection() {
+        resetDockActive();
+        if (settingsDock) settingsDock.classList.add('active');
+        if (terminal) {
+            terminal.classList.remove('terminal-visible');
+            terminal.classList.add('hidden');
+        }
+        if (settingsSection) settingsSection.classList.add('active');
+        [aboutSection, projectsSection, blogSection].forEach(s => {
+            if (s) s.classList.remove('active');
+        });
+    }
+    
+    function closeTerminalFunc() {
+        if (terminal) {
+            terminal.classList.remove('terminal-visible');
+            terminal.classList.add('hidden');
+        }
+        resetDockActive();
+    }
+    
+    // Навигация по разделам
+    win12NavItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            win12NavItems.forEach(navItem => navItem.classList.remove('active'));
+            win12Sections.forEach(section => section.classList.remove('active'));
+            this.classList.add('active');
+            const section = document.getElementById(`${target}-section-content`);
+            if (section) section.classList.add('active');
+        });
+    });
+    
+    settingsNavItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            settingsNavItems.forEach(navItem => navItem.classList.remove('active'));
+            settingsSections.forEach(section => section.classList.remove('active'));
+            this.classList.add('active');
+            const section = document.getElementById(`${target}-section`);
+            if (section) section.classList.add('active');
+        });
+    });
+    
+    // Настройки темы
+    themeOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            themeOptions.forEach(o => o.classList.remove('active'));
+            this.classList.add('active');
+            const theme = this.dataset.theme;
+            document.body.className = theme + '-theme';
+            localStorage.setItem('portfolio-theme', theme);
+        });
+    });
+    
+    backgroundOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            backgroundOptions.forEach(o => o.classList.remove('active'));
+            this.classList.add('active');
+            const background = this.dataset.background;
+            document.body.classList.remove('bg-default', 'bg-mountains', 'bg-space', 'bg-geometry');
+            if (background !== 'default') document.body.classList.add('bg-' + background);
+            localStorage.setItem('portfolio-background', background);
+        });
+    });
+    
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            colorOptions.forEach(o => o.classList.remove('active'));
+            this.classList.add('active');
+            const color = this.dataset.color;
+            document.documentElement.style.setProperty('--win-accent', color);
+            localStorage.setItem('portfolio-accent-color', color);
+        });
+    });
+    
+    if (transparencySlider && transparencyValue) {
+        transparencySlider.addEventListener('input', function() {
+            transparencyValue.textContent = `${this.value}%`;
+            document.documentElement.style.setProperty('--win-surface', `rgba(255, 255, 255, ${this.value/100}`);
+        });
+    }
+    
+    if (applyThemeBtn) {
+        applyThemeBtn.addEventListener('click', () => {
+            localStorage.setItem('portfolio-transparency', transparencySlider.value);
+            showNotification('Настройки темы применены');
+        });
+    }
+    
+    if (applyLanguageBtn) applyLanguageBtn.addEventListener('click', () => showNotification('Настройки языка применены'));
+    if (applyAccessibilityBtn) applyAccessibilityBtn.addEventListener('click', () => showNotification('Настройки доступности применены'));
+    
+    // Функция для создания новой строки ввода
+    function createInputLine() {
+        const inputLine = document.createElement('div');
+        inputLine.className = 'terminal-line';
+        inputLine.innerHTML = `
+            <span class="terminal-prompt">➜</span> 
+            <span class="terminal-prompt" style="color: var(--win-purple);">~</span> 
+            <span class="terminal-prompt">❯</span>
+            <input type="text" class="terminal-input" autofocus>
+            <span class="cursor"></span>
+        `;
+        
+        const input = inputLine.querySelector('.terminal-input');
+        input.focus();
+        
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const fullCommand = this.value.trim();
+                const parts = fullCommand.split(' ');
+                const commandText = parts[0].toLowerCase();
+                const args = parts.slice(1);
+                
+                // Вывод введенной команды
+                const userInput = document.createElement('div');
+                userInput.className = 'terminal-line';
+                userInput.innerHTML = `
+                    <span class="terminal-prompt">➜</span> 
+                    <span class="terminal-prompt" style="color: var(--win-purple);">~</span> 
+                    <span class="terminal-prompt">❯</span>
+                    <span>${fullCommand}</span>
+                `;
+                commandOutput.appendChild(userInput);
+                
+                // Обработка команды
+                if (commands[commandText]) {
+                    let result = '';
+                    
+                    if (commands[commandText].output) {
+                        result = commands[commandText].output;
+                    } else if (commands[commandText].execute) {
+                        result = commands[commandText].execute(args);
+                    }
+                    
+                    if (result) {
+                        const output = document.createElement('div');
+                        output.className = 'command-output';
+                        output.innerHTML = result;
+                        commandOutput.appendChild(output);
+                    }
+                } else {
+                    const error = document.createElement('div');
+                    error.className = 'command-output';
+                    error.innerHTML = `<span style="color: var(--win-purple);">Ошибка:</span> Команда "${commandText}" не найдена. Введите "help" для списка доступных команд.`;
+                    commandOutput.appendChild(error);
+                }
+                
+                // Прокрутка вниз
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+                
+                // Удаляем текущий input
+                inputLine.remove();
+                
+                // Создаем новую строку ввода
+                createInputLine();
+            }
+        });
+        
+        commandOutput.appendChild(inputLine);
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+    
+    // Кнопки возврата
+    if (backButton) backButton.addEventListener('click', openTerminal);
+    if (backButtonProjects) backButtonProjects.addEventListener('click', openTerminal);
+    if (backButtonBlog) backButtonBlog.addEventListener('click', openTerminal);
+    if (backButtonSettings) backButtonSettings.addEventListener('click', openTerminal);
+    
+    // Док-панель
+    if (terminalDock) terminalDock.addEventListener('click', openTerminal);
+    if (aboutDock) aboutDock.addEventListener('click', openAboutSection);
+    if (projectsDock) projectsDock.addEventListener('click', openProjectsSection);
+    if (blogDock) blogDock.addEventListener('click', openBlogSection);
+    if (settingsDock) settingsDock.addEventListener('click', openSettingsSection);
+    
+    // Модальные окна проектов
+    projectButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const projectId = this.dataset.project;
+            const project = projectsData[projectId];
+            
+            if (project && projectModal) {
+                const title = document.getElementById('modal-project-title');
+                const description = document.getElementById('modal-project-description');
+                const statusElement = document.getElementById('modal-project-status');
+                const techContainer = document.getElementById('modal-project-tech');
+                const linkBtn = document.getElementById('modal-project-link');
+                
+                if (title) title.textContent = project.title;
+                if (description) description.innerHTML = project.description;
+                
+                if (statusElement) {
+                    statusElement.textContent = project.status;
+                    statusElement.className = 'modal-status';
+                    
+                    if (project.status === 'Активен') statusElement.classList.add('win12-status-active');
+                    else if (project.status === 'Завершен') statusElement.classList.add('win12-status-completed');
+                }
+                
+                if (techContainer) {
+                    techContainer.innerHTML = '';
+                    project.tech.forEach(tech => {
+                        const badge = document.createElement('span');
+                        badge.className = 'win12-tech-badge';
+                        badge.textContent = tech;
+                        techContainer.appendChild(badge);
+                    });
+                }
+                
+                const imageContainer = document.getElementById('modal-project-image');
+                if (imageContainer) {
+                    const circleInner = imageContainer.querySelector('.circle-3d-inner');
+                    if (circleInner) {
+                        circleInner.innerHTML = '';
+                        
+                        if (project.image) {
+                            const img = document.createElement('img');
+                            img.src = project.image;
+                            img.alt = project.title;
+                            img.className = 'circle-image';
+                            circleInner.appendChild(img);
+                        }
+                        
+                        const content = document.createElement('div');
+                        content.className = 'circle-content';
+                        content.textContent = project.title;
+                        circleInner.appendChild(content);
+                    }
+                }
+                
+                if (linkBtn) linkBtn.dataset.link = project.link;
+                
+                toggleModal(projectModal);
+            }
+        });
+    });
+    
+    // Модальные окна блога
+    blogButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const blogId = this.dataset.blog;
+            const blog = blogData[blogId];
+            
+            if (blog && blogModal) {
+                const title = document.getElementById('modal-blog-title');
+                const date = document.getElementById('modal-blog-date');
+                const category = document.getElementById('modal-blog-category');
+                const author = document.getElementById('modal-blog-author');
+                const content = document.getElementById('modal-blog-content');
+                const tagsContainer = document.getElementById('modal-blog-tags');
+                const linkBtn = document.getElementById('modal-blog-link');
+                
+                if (title) title.textContent = blog.title;
+                if (date) date.textContent = blog.date;
+                if (category) category.textContent = blog.category;
+                if (author) author.textContent = blog.author;
+                if (content) content.innerHTML = blog.content;
+                
+                if (tagsContainer) {
+                    tagsContainer.innerHTML = '';
+                    blog.tags.forEach(tag => {
+                        const tagElement = document.createElement('span');
+                        tagElement.className = 'win12-tag';
+                        tagElement.textContent = tag;
+                        tagsContainer.appendChild(tagElement);
+                    });
+                }
+                
+                if (linkBtn) linkBtn.dataset.link = blog.link;
+                
+                toggleModal(blogModal);
+            }
+        });
+    });
+    
+    // Закрытие всех модальных окон
+    modalCloseBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const modal = this.closest('.win12-modal');
+            if (modal) toggleModal(modal, false);
+        });
+    });
+    
+    // Переход по ссылкам
+    const projectLinkBtn = document.getElementById('modal-project-link');
+    if (projectLinkBtn) {
+        projectLinkBtn.addEventListener('click', function() {
+            const link = this.dataset.link;
+            if (link && link !== '#') window.open(link, '_blank');
+        });
+    }
+    
+    const blogLinkBtn = document.getElementById('modal-blog-link');
+    if (blogLinkBtn) {
+        blogLinkBtn.addEventListener('click', function() {
+            const link = this.dataset.link;
+            if (link) window.open(link, '_blank');
+        });
+    }
+    
+    // Параллакс для 3D кругов
+    document.querySelectorAll('.circle-3d-container').forEach(container => {
+        container.addEventListener('mousemove', (e) => {
+            const circle3d = container.querySelector('.circle-3d');
+            if (!circle3d) return;
+            
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            circle3d.style.transform = `rotateX(${5 + (centerY - y)/20}deg) rotateY(${5 + (x - centerX)/20}deg) scale(1.05)`;
+        });
+        
+        container.addEventListener('mouseleave', () => {
+            const circle3d = container.querySelector('.circle-3d');
+            if (circle3d) circle3d.style.transform = 'rotateX(5deg) rotateY(5deg)';
+        });
+    });
+    
+    // Загрузка настроек
+    function loadSettings() {
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+        document.body.className = savedTheme + '-theme';
+        themeOptions.forEach(o => {
+            if (o.dataset.theme === savedTheme) o.classList.add('active');
+        });
+        
+        const savedBackground = localStorage.getItem('portfolio-background') || 'default';
+        backgroundOptions.forEach(o => {
+            if (o.dataset.background === savedBackground) o.classList.add('active');
+        });
+        
+        if (savedBackground !== 'default') {
+            document.body.classList.add('bg-' + savedBackground);
+        }
+        
+        const savedColor = localStorage.getItem('portfolio-accent-color') || '#6b69d6';
+        document.documentElement.style.setProperty('--win-accent', savedColor);
+        colorOptions.forEach(o => {
+            if (o.dataset.color === savedColor) o.classList.add('active');
+        });
+        
+        if (transparencySlider && transparencyValue) {
+            const savedTransparency = localStorage.getItem('portfolio-transparency') || '80';
+            transparencySlider.value = savedTransparency;
+            transparencyValue.textContent = `${savedTransparency}%`;
+            document.documentElement.style.setProperty('--win-surface', `rgba(255, 255, 255, ${savedTransparency/100}`);
+        }
+    }
+    
+    // Инициализация при загрузке
+    setInterval(updateTime, 60000);
+    updateTime();
+    loadSettings();
+    
+    if (terminalDock) {
+        terminalDock.classList.add('active');
+    }
+    
+    // Удаление анимации пульсации
+    document.querySelectorAll('.pulse').forEach(el => {
+        el.addEventListener('animationend', () => el.classList.remove('pulse'));
+    });
+    
+    // Показываем приветствие при загрузке
+    showWelcomeMessage();
+    createInputLine();
+});
+
+// Данные для проектов
+const projectsData = {
+    'gmod2': {
+        title: 'Gmod2',
+        status: 'Активен',
+        description: 'Легендарная песочница с новым движком...',
+        tech: ['Unity', 'DirectX 12', 'LuaJIT', 'TypeScriptToLua', 'Go'],
+        link: '#',
+        image: 'https://example.com/gmod2-image.jpg'
+    },
+    'neurosync': {
+        title: 'NeuroSync API',
+        status: 'Завершен',
+        description: 'Платформа для синхронизации нейроинтерфейсов...',
+        tech: ['Node.js', 'WebSockets', 'TensorFlow.js', 'MongoDB'],
+        link: '#',
+        image: 'https://example.com/neurosync-image.jpg'
+    },
+    'quantum': {
+        title: 'Quantum DB',
+        status: 'Активен',
+        description: 'Квантовая база данных с поддержкой сложных запросов...',
+        tech: ['Q#', 'Python', 'C++', 'PostgreSQL'],
+        link: '#',
+        image: 'https://example.com/quantum-image.jpg'
+    }
+};
+
+// Данные для блога
+const blogData = {
+    'css-vars': {
+        title: 'Создание современных UI с использованием CSS-переменных...',
+        date: '15 мая 2024',
+        category: 'Frontend',
+        author: 'Алексей Иванов',
+        content: '<h3>Введение в CSS-переменные</h3>...',
+        tags: ['CSS', 'UI Design', 'Web Development'],
+        link: 'https://medium.com/@alexey-dev/css-vars'
+    },
+    'ai-ui': {
+        title: 'Генерация UI компонентов с помощью нейросетей...',
+        date: '28 апреля 2024',
+        category: 'ИИ',
+        author: 'Алексей Иванов',
+        content: '<h3>Новая эра разработки интерфейсов</h3>...',
+        tags: ['AI', 'React', 'Future'],
+        link: 'https://medium.com/@alexey-dev/ai-ui-future'
+    },
+    'react-optimization': {
+        title: 'Оптимизация производительности React приложений...',
+        date: '12 апреля 2024',
+        category: 'Оптимизация',
+        author: 'Алексей Иванов',
+        content: '<h3>Почему производительность важна</h3>...',
+        tags: ['React', 'Performance', 'JavaScript'],
+        link: 'https://medium.com/@alexey-dev/react-optimization'
+    }
+};
+</script>
+</body>
+</html>    
